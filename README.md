@@ -5,5 +5,5 @@ The scripts uses requests to make API calls and downloads the data into a pandas
 
 The script takes user inputs based on State abbreviations (i.e. NY, NJ...) to generate individual dashboards as shown below. A national US dashboard is also output.
 
-![state]()
-![US]()
+![state](https://github.com/nasriv/CovidTracker/blob/master/NY2020-06-24.png)
+![US](https://github.com/nasriv/CovidTracker/blob/master/US_2020-06-24.png)
