@@ -5,12 +5,10 @@ The scripts uses requests to make API calls and downloads the data into a pandas
 
 When the python script covid.py is run, the following image dashboards will be generated:
 
-* State Summary for the current day (based on user input on what states to generate plots for)
+### State Summary for the current day (based on user input on what states to generate plots for) ###
 ![state](https://github.com/nasriv/CovidTracker/blob/master/NY2020-06-24.png)
 
-* US National summary for the current day 
+### US National summary for the current day ###
 ![US](https://github.com/nasriv/CovidTracker/blob/master/US_2020-06-24.png)
 
-* Summary of testing administered as a percentage of 2019 State population
-![state_testing](https://github.com/nasriv/CovidTracker/blob/master/CovidTesting_2020-06-24.png)
 
