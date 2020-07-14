@@ -32,36 +32,36 @@ Sdf = Sdf.sort_values(by=["state"],ascending=True).reset_index()
 
 S_testp = Sdf.totalTestResults.div(Spop.PopEstimate)*100
 
-# --- state plot
-
-f, axs = plt.subplots(figsize=(10,10))
-axs.set_title("Covid Testing by State")
-sns.set(style="whitegrid")
-axs.grid(which="minor",color="gray",linestyle='--', alpha=0.25)
-axs.grid(which="major",color="gray",linestyle='--', alpha=0.4)
-sns.barplot(x=S_testp, y=Spop.State,palette='deep',alpha=0.75)
-axs.set_xlabel('Percent of 2019 Population Tested')
-sns.despine(bottom=True,left=True)
-
-rects = axs.patches
-
-for rect in rects:
-    x_val = rect.get_width()
-    y_val = rect.get_y() + rect.get_height() / 1.75
-    space = 10.0
-    ha = 'left'
-    label = "{:.2f}".format(x_val)+str('%')
-    axs.annotate(
-        label,
-        xy=(x_val,y_val),
-        xytext=(space,0),
-        textcoords="offset points",
-        va='center',
-        ha=ha,
-        fontsize=10
-    )
-plt.tight_layout()
-plt.savefig("Ouput\\CovidTesting_"+str(date.today())+".pdf",dpi=300)
+# # --- state plot
+#
+# f, axs = plt.subplots(figsize=(10,10))
+# axs.set_title("Covid Testing by State\nas of"+str(date.today()))
+# sns.set(style="whitegrid")
+# axs.grid(which="minor",color="gray",linestyle='--', alpha=0.25)
+# axs.grid(which="major",color="gray",linestyle='--', alpha=0.4)
+# sns.barplot(x=S_testp, y=Spop.State,palette='deep',alpha=0.75)
+# axs.set_xlabel('Percent of 2019 Population Tested')
+# sns.despine(bottom=True,left=True)
+#
+# rects = axs.patches
+#
+# for rect in rects:
+#     x_val = rect.get_width()
+#     y_val = rect.get_y() + rect.get_height() / 1.75
+#     space = 10.0
+#     ha = 'left'
+#     label = "{:.2f}".format(x_val)+str('%')
+#     axs.annotate(
+#         label,
+#         xy=(x_val,y_val),
+#         xytext=(space,0),
+#         textcoords="offset points",
+#         va='center',
+#         ha=ha,
+#         fontsize=10
+#     )
+# plt.tight_layout()
+# plt.savefig("CovidTesting_"+str(date.today())+".png",dpi=300)
 
 #
 def summary(state):
@@ -137,7 +137,7 @@ def summary(state):
     return f, axs
 
 def summarytotal():
-    f, axs = plt.subplots(3,2,figsize=(12,9))
+    f, axs = plt.subplots(3,2,figsize=(12,9), sharex=True)
     sns.set_style("ticks")
 
     f.suptitle('CoVid Summary for United States',
@@ -157,12 +157,12 @@ def summarytotal():
 
     # MID LEFT
     # --- total daily deaths
-    sns.lineplot(x=US_tot.date, y=US_tot.death,ax=axs[1,0], color='b')
+    sns.lineplot(x=US_tot.date, y=US_tot.death,ax=axs[1,0])
 
     # MID RIGHT
     # daily increases of cases
     axs[1,1].yaxis.tick_right()
-    sns.lineplot(x=US_tot.date, y=US_tot.positiveIncrease,ax=axs[1,1], color='b')
+    sns.lineplot(x=US_tot.date, y=US_tot.positiveIncrease,ax=axs[1,1])
 
     # BOT RIGHT
     # Percentage increases
@@ -183,11 +183,13 @@ def summarytotal():
             ax.legend(loc='best')
         ax.set_xlabel('')
         ax.set_ylabel('')
-        if ax!=axs[1,1]:
-            ax.xaxis.set_major_formatter(date_form)
-            ax.grid(which="major",color="gray",linestyle='--', alpha=0.4)
-        else:
-            ax.xaxis.set_visible(False)
+        # if ax!=axs[1,1]:
+        #     ax.xaxis.set_major_formatter(date_form)
+        #     ax.grid(which="major",color="gray",linestyle='--', alpha=0.4)
+        # else:
+        #ax.xaxis.set_visible(False)
+        ax.xaxis.set_major_formatter(date_form)
+        ax.grid(which="major",color="gray",linestyle='--', alpha=0.4)
 
     #--- set titles
     axs[0,0].set_ylabel('Total Tests Administered')
